@@ -1,6 +1,6 @@
 # GameOver
 School assignment
 
-## Athors
+## Authors
 Hanna Ell
 Ida Hallner
