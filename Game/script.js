@@ -18,14 +18,15 @@ var config = {
 var game = new Phaser.Game(config);
 
 function preload ()
-{
-    this.load.image('sky', 'assets/sky.png');
+{   
+    this.load.atlas('assets', 'assets/GameSprite.png', 'assets/GameSprite.json')
+    
 }
 
 function create ()
 {
     //  A simple background for our game
-    this.add.image(400, 300, 'sky');
+    this.physics.add.image(400, 300, 'assets', 'unicorn.png')
 }
 
 function update ()
