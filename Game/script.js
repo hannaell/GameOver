@@ -15,18 +15,22 @@ var config = {
     }
 };
 
+let paddle;
 var game = new Phaser.Game(config);
 
 function preload ()
-{   
+{
     this.load.atlas('assets', 'assets/GameSprite.png', 'assets/GameSprite.json')
-    
+
 }
 
 function create ()
 {
     //  A simple background for our game
     this.physics.add.image(400, 300, 'assets', 'unicorn.png')
+
+    // Create paddle
+    this.paddle = this.physics.add.image(400, 550, 'assets', 'paddle.png');
 }
 
 function update ()
