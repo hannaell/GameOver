@@ -37,10 +37,7 @@ function create ()
       this.paddle.x = pointer.x;
     }, this);
 
-    this.input.on('pointerup', function(pointer){ /* ... */ });
-
-
-      }
+}
 
 function update ()
 {
