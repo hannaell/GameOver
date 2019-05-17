@@ -29,9 +29,18 @@ function create ()
     //  A simple background for our game
     this.physics.add.image(400, 300, 'assets', 'unicorn.png')
 
-    // Create paddle
-    this.paddle = this.physics.add.image(400, 550, 'assets', 'paddle.png');
-}
+    // Create paddle, setImmovable to prevent the ball to push the paddle out of the box.
+    this.paddle = this.physics.add.image(400, 550, 'assets', 'paddle.png').setImmovable().setCollideWorldBounds(true);
+
+    //  Event to get the paddle to follow how the mouse move.
+    this.input.on('pointermove', function(pointer){
+      this.paddle.x = pointer.x;
+    }, this);
+
+    this.input.on('pointerup', function(pointer){ /* ... */ });
+
+
+      }
 
 function update ()
 {
