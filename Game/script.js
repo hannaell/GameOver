@@ -27,6 +27,9 @@ function preload ()
 
 function create ()
 {
+    // get the ball to bounce of all wllas exapt the floor.
+    this.physics.world.setBoundsCollision(true, true, true, false);
+
     //  A simple background for our game
     this.physics.add.image(400, 300, 'assets', 'unicorn.png');
 
@@ -47,6 +50,7 @@ function create ()
     this.ball.setBounce(1);
     this.ball.body.gravity.y = 100;
     this.ball.body.velocity.set(150);
+    this.ball.setData('onPaddle', true);
 
 
     this.physics.add.collider(this.ball, this.bricks, this.hitBrick, null, this);
@@ -56,6 +60,16 @@ function create ()
     this.input.on('pointermove', function(pointer){
       this.paddle.x = pointer.x;
     }, this);
+
+    this.input.on('pointerup', function (pointer) {
+
+            if (this.ball.getData('onPaddle'))
+            {
+                this.ball.setVelocity(-75, -300);
+                this.ball.setData('onPaddle', false);
+            }
+
+        }, this);
 
 
 
