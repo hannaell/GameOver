@@ -20,14 +20,21 @@ var game = new Phaser.Game(config);
 
 function preload ()
 {
-    this.load.atlas('assets', 'assets/GameSprite.png', 'assets/GameSprite.json')
+    this.load.atlas('assets', 'assets/GameSprite.png', 'assets/GameSprite.json');
 
 }
 
 function create ()
 {
     //  A simple background for our game
-    this.physics.add.image(400, 300, 'assets', 'unicorn.png')
+    this.physics.add.image(400, 300, 'assets', 'unicorn.png');
+
+    // Create bricks.
+    this.bricks = this.physics.add.staticGroup({
+        key: 'assets', frame: [ 'lavender.png', 'purple.png', 'pink.png', 'yellow.png', 'green.png', 'blue.png' ],
+        frameQuantity: 10,
+        gridAlign: { width: 10, height: 6, cellWidth: 70, cellHeight: 30, x: 85, y: 100 }
+    });
 
     // Create paddle, setImmovable to prevent the ball to push the paddle out of the box.
     this.paddle = this.physics.add.image(400, 550, 'assets', 'paddle.png').setImmovable().setCollideWorldBounds(true);
