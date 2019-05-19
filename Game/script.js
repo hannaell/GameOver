@@ -22,7 +22,6 @@ var game = new Phaser.Game(config);
 function preload ()
 {
     this.load.atlas('assets', 'assets/GameSprite.png', 'assets/GameSprite.json');
-
 }
 
 function create ()
@@ -44,33 +43,46 @@ function create ()
     this.paddle = this.physics.add.image(400, 550, 'assets', 'paddle.png').setImmovable().setCollideWorldBounds(true);
 
     //Create the ball
-    this.ball = this.physics.add.image(400, 350, 'assets', 'ball.png').setCollideWorldBounds(true);
+    this.ball = this.physics.add.image(400, 550, 'assets', 'ball.png').setCollideWorldBounds(true);
 
-    //Get the ball to move around
-    this.ball.setBounce(1);
-    this.ball.body.gravity.y = 100;
-    this.ball.body.velocity.set(150);
+    // Get the ball to start on paddle.x.
+    this.ball.setVelocity(0);
+    this.ball.setPosition(this.paddle.x, 520);
+    this.ball.setData('onPaddle', true);
 
     // Get the collider logic.
     this.physics.add.collider(this.ball, this.bricks, this.hitBrick, null, this);
     this.physics.add.collider(this.ball, this.paddle);
 
-    //  Event to get the paddle to follow how the mouse move.
+    //  Get the paddle to follow how the mouse move.
     this.input.on('pointermove', function(pointer){
       this.paddle.x = pointer.x;
+      if (this.ball.getData('onPaddle'))
+         {
+           this.ball.x = this.paddle.x;
+         }
     }, this);
 
-  }
+    // Get the ball start from paddle.x. The ball start bounce on mouseclick.
+    this.input.on('pointerup', function (pointer) {
+      // Get the ball to start bouncing when mouse clicked.
+      if (this.ball.getData('onPaddle'))
+        {
+          this.ball.setVelocity(-100, -300);
+          this.ball.setBounce(1);
+          this.ball.setData('onPaddle', false);
+        }
+        }, this);
+}
 
 function update ()
 {
   // When the ball bounce out from the box, restart the ball again.
   if (this.ball.y > 600)
   {
-    this.ball.setBounce(1);
-    this.ball.body.gravity.y = 100;
-    this.ball.body.velocity.set(150);
-    this.ball.setPosition(400, 350);
+    this.ball.setVelocity(0);
+    this.ball.setPosition(this.paddle.x, 520);
+    this.ball.setData('onPaddle', true);
   };
 
 }
