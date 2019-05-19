@@ -53,12 +53,13 @@ function create ()
 
     // Get the collider logic.
     this.physics.add.collider(this.ball, this.bricks, this.hitBrick, null, this);
-    this.physics.add.collider(this.ball, this.paddle, this.hitPaddle, null, this);
+    this.physics.add.collider(this.ball, this.paddle);
 
     //  Event to get the paddle to follow how the mouse move.
     this.input.on('pointermove', function(pointer){
       this.paddle.x = pointer.x;
     }, this);
+
   }
 
 function update ()
