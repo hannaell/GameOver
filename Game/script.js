@@ -16,6 +16,7 @@ var config = {
 };
 
 let paddle;
+let ball;
 var game = new Phaser.Game(config);
 
 function preload ()
@@ -43,6 +44,11 @@ function create ()
     this.input.on('pointermove', function(pointer){
       this.paddle.x = pointer.x;
     }, this);
+
+
+    //Create the ball
+    this.ball = this.physics.add.image(400, 350, 'assets', 'ball.png').setCollideWorldBounds(true);
+
 
 }
 
