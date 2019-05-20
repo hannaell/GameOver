@@ -20,6 +20,8 @@ let ball;
 let bricks;
 var scoreText;
 var score = 0;
+var lives = 3;
+var gameOver = false;
 
 var game = new Phaser.Game(config);
 
@@ -82,6 +84,12 @@ function create ()
     // Print score
     this.scoreText = this.add.text(5, 5, 'Score: 0', { font: '25px Amatic SC', fill: '#8347C1' })
 
+    //  The score
+    this.livesText = this.add.text(710, 5, 'Lives: ' + lives, { font: '25px Amatic SC', fill: '#8347C1' });
+
+    // Text if you loose the game.
+    this.gameOverText = this.add.text(200, 200, ' ', { font: '88px Amatic SC', fill: '#8347C1'});
+
 }
 
 function hitBrick (ball, brick) {
@@ -103,7 +111,7 @@ function hitBrick (ball, brick) {
       this.bricks.children.each(function (brick) {
         brick.enableBody(false, 0, 0, true, true);
       });
-  }      
+  }
 };
 
 function update ()
@@ -111,9 +119,19 @@ function update ()
   // When the ball bounce out from the box, restart the ball again.
   if (this.ball.y > 600)
   {
+    lives -= 1;
+    this.livesText.setText('Lives: ' + lives);
     this.ball.setVelocity(0);
     this.ball.setPosition(this.paddle.x, 520);
     this.ball.setData('onPaddle', true);
-  };
+  }
+
+  if(lives == 0) {
+    this.physics.pause();
+    this.ball.setData('onPaddle', true);
+    this.gameOverText.setText('Game Over');
+    gameOver = true;
+  }
+
 
 }
