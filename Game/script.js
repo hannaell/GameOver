@@ -21,7 +21,7 @@ var game = new Phaser.Game(config);
 
 function preload ()
 {
-    this.load.atlas('assets', 'assets/GameSprite.png', 'assets/GameSprite.json');
+    this.load.atlas('assets', 'assets/GameSprite2.png', 'assets/GameSprite2.json');
 }
 
 function create ()
