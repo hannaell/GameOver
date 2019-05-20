@@ -128,6 +128,7 @@ function update ()
 
   if(lives == 0) {
     this.physics.pause();
+    this.ball.setData('onPaddle', true);
     this.gameOverText.setText('Game Over');
     gameOver = true;
   }
