@@ -20,6 +20,8 @@ let ball;
 let bricks;
 var scoreText;
 var score = 0;
+var lives = 3;
+var gameOver = false;
 
 var game = new Phaser.Game(config);
 
@@ -82,6 +84,9 @@ function create ()
     // Print score
     this.scoreText = this.add.text(5, 5, 'Score: 0', { font: '25px Amatic SC', fill: '#8347C1' })
 
+    //  The score
+    livesText = this.add.text(710, 5, 'Lives: ' + lives, { fontSize: '25px Amatic SC', fill: '#8347C1' });
+
 }
 
 function hitBrick (ball, brick) {
@@ -103,7 +108,7 @@ function hitBrick (ball, brick) {
       this.bricks.children.each(function (brick) {
         brick.enableBody(false, 0, 0, true, true);
       });
-  }      
+  }
 };
 
 function update ()
