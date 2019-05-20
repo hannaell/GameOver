@@ -85,10 +85,10 @@ function create ()
     this.scoreText = this.add.text(5, 5, 'Score: 0', { font: '25px Amatic SC', fill: '#8347C1' })
 
     //  The score
-    livesText = this.add.text(710, 5, 'Lives: ' + lives, { font: '25px Amatic SC', fill: '#8347C1' });
+    this.livesText = this.add.text(710, 5, 'Lives: ' + lives, { font: '25px Amatic SC', fill: '#8347C1' });
 
     // Text if you loose the game.
-    gameOverText = this.add.text(200, 300, ' ', { font: '88px Amatic SC', fill: '#8347C1'});
+    this.gameOverText = this.add.text(200, 200, ' ', { font: '88px Amatic SC', fill: '#8347C1'});
 
 }
 
@@ -120,7 +120,7 @@ function update ()
   if (this.ball.y > 600)
   {
     lives -= 1;
-    livesText.setText('Lives: ' + lives);
+    this.livesText.setText('Lives: ' + lives);
     this.ball.setVelocity(0);
     this.ball.setPosition(this.paddle.x, 520);
     this.ball.setData('onPaddle', true);
@@ -128,7 +128,7 @@ function update ()
 
   if(lives == 0) {
     this.physics.pause();
-    gameOverText.setText('Game Over');
+    this.gameOverText.setText('Game Over');
     gameOver = true;
   }
 
