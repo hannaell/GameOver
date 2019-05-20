@@ -17,10 +17,13 @@ var config = {
 
 let paddle;
 let ball;
+let bricks;
+
 var game = new Phaser.Game(config);
 
 function preload ()
 {
+    // Get the ball to bounce of all walls except the floor.
     this.load.atlas('assets', 'assets/GameSprite2.png', 'assets/GameSprite2.json');
 }
 
@@ -51,7 +54,7 @@ function create ()
     this.ball.setData('onPaddle', true);
 
     // Get the collider logic.
-    this.physics.add.collider(this.ball, this.bricks, this.hitBrick, null, this);
+    this.physics.add.collider(this.ball, this.bricks, hitBrick, null, this);
     this.physics.add.collider(this.ball, this.paddle);
 
     //  Get the paddle to follow how the mouse move.
@@ -73,6 +76,12 @@ function create ()
           this.ball.setData('onPaddle', false);
         }
         }, this);
+
+        function hitBrick (ball, brick)
+        {
+          console.log('hit');
+          brick.disableBody(true, true);
+        };
 }
 
 function update ()
