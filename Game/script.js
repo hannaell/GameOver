@@ -116,6 +116,8 @@ function update ()
   // When the ball bounce out from the box, restart the ball again.
   if (this.ball.y > 600)
   {
+    lives -= 1;
+    livesText.setText('Lives: ' + lives);
     this.ball.setVelocity(0);
     this.ball.setPosition(this.paddle.x, 520);
     this.ball.setData('onPaddle', true);
