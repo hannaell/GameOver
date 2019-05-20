@@ -18,6 +18,8 @@ var config = {
 let paddle;
 let ball;
 let bricks;
+var scoreText;
+var score = 0;
 
 var game = new Phaser.Game(config);
 
@@ -75,27 +77,34 @@ function create ()
           this.ball.setBounce(1);
           this.ball.setData('onPaddle', false);
         }
-        }, this);
+    }, this);
 
-        function hitBrick (ball, brick)
-        {
-          console.log('hit');
-          brick.disableBody(true, true);
+    // Print score
+    this.scoreText = this.add.text(5, 5, 'Score: 0', { font: '25px Amatic SC', fill: '#8347C1' })
 
-          // When the ball hits all the bricks, start the bricks layout all over again.
-          if (this.bricks.countActive() === 0)
-          {
-            // Get the ball to start posistion again.
-            this.ball.setVelocity(0);
-            this.ball.setPosition(this.paddle.x, 520);
-            this.ball.setData('onPaddle', true);
-
-            this.bricks.children.each(function (brick) {
-              brick.enableBody(false, 0, 0, true, true);
-            });
-          }
-        };
 }
+
+function hitBrick (ball, brick) {
+  console.log('hit');
+  brick.disableBody(true, true);
+
+  // Update score
+  score += 10;
+  this.scoreText.setText('Score: ' + score);
+
+  // When the ball hits all the bricks, start the bricks layout all over again.
+  if (this.bricks.countActive() === 0)
+  {
+      // Get the ball to start posistion again.
+      this.ball.setVelocity(0);
+      this.ball.setPosition(this.paddle.x, 520);
+      this.ball.setData('onPaddle', true);
+
+      this.bricks.children.each(function (brick) {
+        brick.enableBody(false, 0, 0, true, true);
+      });
+  }      
+};
 
 function update ()
 {
