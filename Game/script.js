@@ -81,6 +81,19 @@ function create ()
         {
           console.log('hit');
           brick.disableBody(true, true);
+
+          // When the ball hits all the bricks, start the bricks layout all over again.
+          if (this.bricks.countActive() === 0)
+          {
+            // get the ball to start posistion again.
+            this.ball.setVelocity(0);
+            this.ball.setPosition(this.paddle.x, 520);
+            this.ball.setData('onPaddle', true);
+
+            this.bricks.children.each(function (brick) {
+              brick.enableBody(false, 0, 0, true, true);
+            });
+          }
         };
 }
 
