@@ -27,8 +27,11 @@ var game = new Phaser.Game(config);
 
 function preload ()
 {
-    // Get the ball to bounce of all walls except the floor.
+    // Add sprite
     this.load.atlas('assets', 'assets/GameSprite2.png', 'assets/GameSprite2.json');
+
+    //Add audio
+    this.load.audio('slap', 'assets/audio/slap.wav');
 }
 
 function create ()
@@ -90,11 +93,17 @@ function create ()
     // Text if you loose the game.
     this.gameOverText = this.add.text(200, 200, ' ', { font: '88px Amatic SC', fill: '#8347C1'});
 
+    // The audio sound
+    this.sound.add('slap');
+
 }
 
 function hitBrick (ball, brick) {
   console.log('hit');
   brick.disableBody(true, true);
+
+  //Add sound effect when ball hits the brick.
+  this.sound.play('slap');
 
   // Update score
   score += 10;
