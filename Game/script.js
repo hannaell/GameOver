@@ -85,7 +85,7 @@ function create ()
           // When the ball hits all the bricks, start the bricks layout all over again.
           if (this.bricks.countActive() === 0)
           {
-            // get the ball to start posistion again.
+            // Get the ball to start posistion again.
             this.ball.setVelocity(0);
             this.ball.setPosition(this.paddle.x, 520);
             this.ball.setData('onPaddle', true);
