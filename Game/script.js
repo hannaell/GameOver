@@ -29,7 +29,7 @@ var game = new Phaser.Game(config);
 function preload ()
 {
     // Add sprite
-    this.load.atlas('assets', 'assets/GameSprite2.png', 'assets/GameSprite2.json');
+    this.load.atlas('assets', 'assets/GameSprite.png', 'assets/GameSprite.json');
     // Add font
     this.load.script('webfont', 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js');
 
