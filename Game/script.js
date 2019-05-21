@@ -32,7 +32,7 @@ function preload ()
     this.load.atlas('assets', 'assets/GameSprite2.png', 'assets/GameSprite2.json');
     // Add font
     this.load.script('webfont', 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js');
-    
+
     //Add audio
     this.load.audio('blip', 'assets/audio/blip.wav');
     this.load.audio('loose', 'assets/audio/loose.wav');
@@ -81,17 +81,17 @@ function create ()
   }, this);
 
   // Get the ball start from paddle.x. The ball start bounce on mouseclick.
-  this.input.on('pointerup', function (pointer) 
+  this.input.on('pointerup', function (pointer)
   {
     // Get the ball to start bouncing when mouse clicked.
     if (this.ball.getData('onPaddle'))
     {
-      this.ball.setVelocity(-100, -300);
+      this.ball.setVelocity(-400, -600);
       this.ball.setBounce(1);
       this.ball.setData('onPaddle', false);
     }
   }, this);
-  
+
   var add = this.add;
 
   // Load font
@@ -127,7 +127,7 @@ function create ()
   this.sound.add('GameOver');
 }
 
-function hitBrick (ball, brick) 
+function hitBrick (ball, brick)
 {
   brick.disableBody(true, true);
 
@@ -146,7 +146,7 @@ function hitBrick (ball, brick)
     this.ball.setPosition(this.paddle.x, 520);
     this.ball.setData('onPaddle', true);
 
-    this.bricks.children.each(function (brick) 
+    this.bricks.children.each(function (brick)
     {
       brick.enableBody(false, 0, 0, true, true);
     });
@@ -167,7 +167,7 @@ function update ()
 
   }
 
-  if(lives == 0) 
+  if(lives == 0)
   {
     this.physics.pause();
     this.ball.setData('onPaddle', true);
