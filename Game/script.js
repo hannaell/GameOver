@@ -15,6 +15,7 @@ var config = {
     }
 };
 
+let emitter;
 let paddle;
 let ball;
 let bricks;
@@ -29,6 +30,8 @@ function preload ()
 {
     // Add sprite
     this.load.atlas('assets', 'assets/GameSprite2.png', 'assets/GameSprite2.json');
+    this.load.script('webfont', 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js');
+    
 
     //Add audio
     this.load.audio('blip', 'assets/audio/blip.wav');
@@ -37,6 +40,8 @@ function preload ()
 
 function create ()
 {
+    emitter = window.mitt();
+
     // Get the ball to bounce of all walls except the floor.
     this.physics.world.setBoundsCollision(true, true, true, false);
 
@@ -85,6 +90,32 @@ function create ()
         }
     }, this);
 
+    var add = this.add;
+    WebFont.load({
+      custom: {
+          families: [ 'Amatic SC' ]
+      },
+      active: function ()
+      {
+        // Print score
+        let scoreText = add.text(5, 5, 'Score: 0', { font: '30px Amatic SC', fill: '#8347C1' })
+        emitter.on('updateScore', (score) => {
+          scoreText.setText('Score: ' + score);
+        });
+
+        //  The score
+        let livesText = add.text(710, 5, 'Lives: ' + lives, { font: '30px Amatic SC', fill: '#8347C1' });
+        emitter.on('updateLives', (lives) => {
+          livesText.setText('lives: ' + lives);
+        });
+
+        // Text if you loose the game.
+        let gameOverText = add.text(225, 200, ' ', { font: '120px Amatic SC', fill: '#8347C1'});
+        emitter.on('printGameOver', () => {
+          gameOverText.setText('Game Over');
+        });
+      }
+  });
     // Print score
     this.scoreText = this.add.text(5, 5, 'Score: 0', { font: '25px Amatic SC', fill: '#8347C1' })
 
@@ -112,21 +143,21 @@ function hitBrick (ball, brick) {
 
   // Update score
   score += 10;
-  this.scoreText.setText('Score: ' + score);
+  emitter.emit('updateScore', score);
 
   // When the ball hits all the bricks, start the bricks layout all over again.
   if (this.bricks.countActive() === 0)
   {
-      // Get the ball to start posistion again.
-      this.ball.setVelocity(0);
-      this.ball.setPosition(this.paddle.x, 520);
-      this.ball.setData('onPaddle', true);
+    // Get the ball to start posistion again.
+    this.ball.setVelocity(0);
+    this.ball.setPosition(this.paddle.x, 520);
+    this.ball.setData('onPaddle', true);
 
-      this.bricks.children.each(function (brick) {
-        brick.enableBody(false, 0, 0, true, true);
-      });
+    this.bricks.children.each(function (brick) {
+      brick.enableBody(false, 0, 0, true, true);
+    });
   }
-};
+}
 
 function update ()
 {
@@ -134,7 +165,8 @@ function update ()
   if (this.ball.y > 600)
   {
     lives -= 1;
-    this.livesText.setText('Lives: ' + lives);
+    emitter.emit('updateLives', lives);
+    // this.livesText.setText('Lives: ' + lives);
     this.ball.setVelocity(0);
     this.ball.setPosition(this.paddle.x, 520);
     this.ball.setData('onPaddle', true);
@@ -145,10 +177,9 @@ function update ()
   if(lives == 0) {
     this.physics.pause();
     this.ball.setData('onPaddle', true);
-    this.gameOverText.setText('Game Over');
+    emitter.emit('printGameOver');
+    // this.gameOverText.setText('Game Over');
     gameOver = true;
 
   }
-
-
 }
