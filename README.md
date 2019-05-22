@@ -4,8 +4,8 @@ School assignment written in JavaScript
 
 ## Authors
 
-[Hanna Ell](https://github.com/hannaell)
-[Ida Hallner](https://github.com/idahal)
+- [Hanna Ell](https://github.com/hannaell)
+- [Ida Hallner](https://github.com/idahal)
 
 ## Testers
 
