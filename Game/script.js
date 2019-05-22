@@ -29,7 +29,7 @@ var game = new Phaser.Game(config);
 function preload ()
 {
     // Add sprite
-    this.load.atlas('assets', 'assets/GameSprite2.png', 'assets/GameSprite2.json');
+    this.load.atlas('assets', 'assets/GameSprite.png', 'assets/GameSprite.json');
     // Add font
     this.load.script('webfont', 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js');
 
@@ -102,21 +102,26 @@ function create ()
     active: function ()
     {
       // Print score
-      let scoreText = add.text(5, 5, 'Score: 0', { font: '30px Amatic SC', fill: '#8347C1' })
+      let scoreText = add.text(10, 5, 'Score: 0', { font: '30px Amatic SC', fill: '#8347C1' })
       emitter.on('updateScore', (score) => {
         scoreText.setText('Score: ' + score);
       });
 
       //  The score
-      let livesText = add.text(710, 5, 'Lives: ' + lives, { font: '30px Amatic SC', fill: '#8347C1' });
+      let livesText = add.text(730, 5, 'Lives: ' + lives, { font: '30px Amatic SC', fill: '#8347C1' });
       emitter.on('updateLives', (lives) => {
         livesText.setText('lives: ' + lives);
       });
 
       // Text if you loose the game.
-      let gameOverText = add.text(225, 200, ' ', { font: '120px Amatic SC', fill: '#8347C1'});
+      let gameOverText = add.text(225, 200, ' ', { font: '120px Amatic SC', fill: '#8347C1' });
       emitter.on('printGameOver', () => {
         gameOverText.setText('Game Over');
+      });
+
+      let gameOverScore = add.text(230, 340, ' ', { font: '90px Amatic SC', fill: '#8347C1' });
+      emitter.on('printScore', (score) => {
+        gameOverScore.setText('Your score: ' + score);
       });
     }
   });
@@ -172,6 +177,7 @@ function update ()
     this.physics.pause();
     this.ball.setData('onPaddle', true);
     emitter.emit('printGameOver');
+    emitter.emit('printScore', score);
     gameOver = true;
   }
 }
