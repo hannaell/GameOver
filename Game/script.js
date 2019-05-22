@@ -160,6 +160,15 @@ function hitBrick (ball, brick)
 
 function update ()
 {
+  // When gameover relaod page with mouse click.
+  if (gameOver)
+  {
+    this.input.on('pointerup', function (pointer)
+    {
+      window.location.reload();
+    })
+  }
+
   // When the ball bounce out from the box, restart the ball again.
   if (this.ball.y > 600)
   {
