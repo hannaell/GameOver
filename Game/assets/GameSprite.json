@@ -1,7 +1,7 @@
 {
 	"textures": [
 		{
-			"image": "GameSprite2.png",
+			"image": "GameSprite.png",
 			"format": "RGBA8888",
 			"size": {
 				"w": 800,
@@ -204,6 +204,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:ce9724de69917d23ab5c35b854063e5f:e19cd56de949f901499d4cc579086134:731924e7acacff2b73ab0c4ad130e3e8$"
+		"smartupdate": "$TexturePacker:SmartUpdate:700a0d75265a8383a6e9749da82c231d:bc65dc7030044db97fba660bd4fc45a9:beb0888ff2f0fbe091d84b419447f34a$"
 	}
 }
