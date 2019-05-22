@@ -123,6 +123,11 @@ function create ()
       emitter.on('printScore', (score) => {
         gameOverScore.setText('Your score: ' + score);
       });
+
+      let restartGameText = add.text(300, 10, ' ', { font: '60px Amatic SC', fill: '#8347C1' });
+      emitter.on('restartGame', () => {
+        restartGameText.setText('Restart Game');
+      });
     }
   });
 
@@ -187,6 +192,7 @@ function update ()
     this.ball.setData('onPaddle', true);
     emitter.emit('printGameOver');
     emitter.emit('printScore', score);
+    emitter.emit('restartGame');
     gameOver = true;
   }
 }
