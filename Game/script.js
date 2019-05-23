@@ -123,6 +123,11 @@ function create ()
       emitter.on('printScore', (score) => {
         gameOverScore.setText('Your score: ' + score);
       });
+
+      let restartGameText = add.text(300, 10, ' ', { font: '60px Amatic SC', fill: '#8347C1' });
+      emitter.on('restartGame', () => {
+        restartGameText.setText('Restart Game');
+      });
     }
   });
 
@@ -160,6 +165,15 @@ function hitBrick (ball, brick)
 
 function update ()
 {
+  // When gameover relaod page with mouse click.
+  if (gameOver)
+  {
+    this.input.on('pointerup', function (pointer)
+    {
+      window.location.reload();
+    })
+  }
+
   // When the ball bounce out from the box, restart the ball again.
   if (this.ball.y > 600)
   {
@@ -178,6 +192,7 @@ function update ()
     this.ball.setData('onPaddle', true);
     emitter.emit('printGameOver');
     emitter.emit('printScore', score);
+    emitter.emit('restartGame');
     gameOver = true;
   }
 }
