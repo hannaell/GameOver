@@ -86,7 +86,7 @@ function create ()
     // Get the ball to start bouncing when mouse clicked.
     if (this.ball.getData('onPaddle'))
     {
-      this.ball.setVelocity(-400, -600);
+      this.ball.setVelocity(-300, -500);
       this.ball.setBounce(1);
       this.ball.setData('onPaddle', false);
     }
@@ -134,7 +134,7 @@ function create ()
   // The audio sound
   this.sound.add('blip');
   this.sound.add('loose');
-  this.sound.add('GameOver');
+
 }
 
 function hitBrick (ball, brick)
@@ -180,7 +180,7 @@ function update ()
     lives -= 1;
     emitter.emit('updateLives', lives);
     this.ball.setVelocity(0);
-    this.ball.setPosition(this.paddle.x, 520);
+    this.ball.setPosition(this.paddle.x, 512);
     this.ball.setData('onPaddle', true);
     this.sound.play('loose');
 
