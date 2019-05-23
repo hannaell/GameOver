@@ -39,14 +39,17 @@ function preload ()
 }
 
 // Get the canvas responsive to work on small and large devices.
-function resize() {
+function resize()
+{
   var canvas = game.canvas, width = window.innerWidth, height = window.innerHeight;
   var scale = width / height, ratio = canvas.width / canvas.height;
 
-  if (scale < ratio) {
+  if (scale < ratio)
+  {
     canvas.style.width = width + 'px';
     canvas.style.height = (width / ratio) + 'px';
-  } else {
+  } else
+  {
     canvas.style.width = (height * ratio) + 'px';
     canvas.style.height = height + 'px';
   }
