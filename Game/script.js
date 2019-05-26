@@ -38,9 +38,29 @@ function preload ()
     this.load.audio('loose', 'assets/audio/loose.wav');
 }
 
+// Get the canvas responsive to work on small and large devices.
+function resize()
+{
+  var canvas = game.canvas, width = window.innerWidth, height = window.innerHeight;
+  var scale = width / height, ratio = canvas.width / canvas.height;
+
+  if (scale < ratio)
+  {
+    canvas.style.width = width + 'px';
+    canvas.style.height = (width / ratio) + 'px';
+  } else
+  {
+    canvas.style.width = (height * ratio) + 'px';
+    canvas.style.height = height + 'px';
+  }
+}
+
 function create ()
 {
   emitter = window.mitt();
+
+  window.addEventListener('resize', resize);
+  resize();
 
   // Get the ball to bounce of all walls except the floor.
   this.physics.world.setBoundsCollision(true, true, true, false);
