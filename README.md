@@ -66,6 +66,9 @@ School assignment written in JavaScript and Phaser 3.
 - #32 [Ball](https://github.com/hannaell/GameOver/pull/32)
 - #33 Feature [Adjust_canvas](https://github.com/hannaell/GameOver/pull/33)
 
+## Feedback to group 11
+- [Add feeback group 10](https://github.com/NilsNathorst/GameOver/pull/28)
+
 ## License
 
 This project is licensed under the MIT License - see the LICENSE.md file for details
