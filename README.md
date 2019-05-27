@@ -60,6 +60,28 @@ School assignment written in JavaScript and Phaser 3.
 - #26 [Merge master in to sprite](https://github.com/hannaell/GameOver/pull/26)
 - #27 [Get Gameover up to date with master](https://github.com/hannaell/GameOver/pull/27)
 
+#### Feedback
+
+> - script.js:22-27 - You’re using var on several occasions instead of the preferred alternatives let or const.
+
+> - script.js:109 - Save constant values to constants. Easier to work with for you and for other people to read and understand your code.
+
+> - script.js:175-177, 202-204 - Break out repeating code patterns to functions. Remember to keep it dry. 
+
+> - script.js:193 - Instead of reloading the page you could build a game state which would get reset after the user chose to start a new game (like we did in the memory assignment).
+
+> - script.js:3,4 - The size of the canvas could be set according to the size of the client window instead of fixed values. Would make it better for different sized screens.
+
+> - General - Break out the ball instance to its own class and preferably to its own file. This could also be done with other types of instances (i.e tiles & paddle board)
+
+> - General - The create function is very long. It would be easier to understand if it consisted of smaller functions. Same here, break out the code in to smaller pieces.
+
+> - General - You could move script and style files to their own folders for better  folder structure.
+
+> - General - Good use of pull requests, easy to read and understand with the tag system you chose to use.
+
+> - General - Lots of declarative comments, made the code easy to understand.
+
 ## License
 
 This project is licensed under the MIT License - see the LICENSE.md file for details
