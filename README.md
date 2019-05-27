@@ -59,6 +59,15 @@ School assignment written in JavaScript and Phaser 3.
 - #25 [Sprite](https://github.com/hannaell/GameOver/pull/25)
 - #26 [Merge master in to sprite](https://github.com/hannaell/GameOver/pull/26)
 - #27 [Get Gameover up to date with master](https://github.com/hannaell/GameOver/pull/27)
+- #28 [Create reload page](https://github.com/hannaell/GameOver/pull/28)
+- #29 Feature [GameOver relaod page](https://github.com/hannaell/GameOver/pull/29)
+- #30 Update [Get ball update with master](https://github.com/hannaell/GameOver/pull/30)
+- #31 [Update ball](https://github.com/hannaell/GameOver/pull/31)
+- #32 [Ball](https://github.com/hannaell/GameOver/pull/32)
+- #33 Feature [Adjust_canvas](https://github.com/hannaell/GameOver/pull/33)
+
+## Feedback to group 11
+- [Add feeback group 10](https://github.com/NilsNathorst/GameOver/pull/28)
 
 #### Feedback
 
